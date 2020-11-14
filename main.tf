@@ -6,15 +6,23 @@
  */
 
 module "label" {
-  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.19.0"
-  namespace   = var.namespace
-  name        = var.name
-  stage       = var.stage
-  environment = var.environment
-  delimiter   = var.delimiter
-  attributes  = var.attributes
-  tags        = var.tags
-  enabled     = var.enabled
+  source  = "cloudposse/label/null"
+  version = "0.21.0"
+
+  enabled             = var.enabled
+  namespace           = var.namespace
+  environment         = var.environment
+  stage               = var.stage
+  name                = var.name
+  delimiter           = var.delimiter
+  attributes          = var.attributes
+  tags                = var.tags
+  additional_tag_map  = var.additional_tag_map
+  label_order         = var.label_order
+  regex_replace_chars = var.regex_replace_chars
+  id_length_limit     = var.id_length_limit
+
+  context = var.context
 }
 
 resource "aws_kms_key" "this" {
